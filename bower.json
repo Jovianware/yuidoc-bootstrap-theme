@@ -1,0 +1,19 @@
+{
+  "name": "yuidoc-bootstrap-theme",
+  "dependencies": {
+    "bootstrap": "~3.0.2",
+    "jquery": "~2.0.3"
+  },
+  "ignore": [
+    ".gitignore",
+    ".gitmodules",
+    ".bowerrc",
+    "Gruntfile.coffee",
+    "yuidoc-bootstrap-theme.sublime-project",
+    "yuidoc-bootstrap-theme.sublime-workspace",
+    "examples",
+    "node_modules",
+    "package.json",
+    "support"
+  ]
+}

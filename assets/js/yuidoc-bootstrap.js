@@ -43,27 +43,28 @@ $(function() {
         });
 
         sidebarSearch = $('#sidebar input[type="search"]');
-        sidebarSearch.typeahead({
-            updater : function(item) {
-                $('#sidebar .tab-pane.active a:contains(' + item + ')')[0].click();
-                return item;
-            }
-        });
-        sidebarSearch.data('typeahead').source = sideSource;
+        // TODO FIXME: 
+        // sidebarSearch.typeahead({
+        //     updater : function(item) {
+        //         $('#sidebar .tab-pane.active a:contains(' + item + ')')[0].click();
+        //         return item;
+        //     }
+        // });
+        // sidebarSearch.data('typeahead').source = sideSource;
 
         navbarSearch = $('.navbar input');
+        // TODO FIXME:
+        // navbarSearch.typeahead({
+        //     source : navbarSearch.data('obj'),
+        //     matcher : function(item) {
+        //         var regex = new RegExp(this.query, 'ig');
 
-        navbarSearch.typeahead({
-            source : navbarSearch.data('obj'),
-            matcher : function(item) {
-                var regex = new RegExp(this.query, 'ig');
-
-                return regex.test(item.split('/')[1]);
-            },
-            updater : function(item) {
-                window.location.assign(location.protocol + "//" + location.host + '/' + item + '.html');
-            }
-        });
+        //         return regex.test(item.split('/')[1]);
+        //     },
+        //     updater : function(item) {
+        //         window.location.assign(location.protocol + "//" + location.host + '/' + item + '.html');
+        //     }
+        // });
     }
 
     function setOptionDisplayState(box) {
