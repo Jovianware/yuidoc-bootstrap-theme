@@ -5,7 +5,22 @@ PORT = process.env.PORT ? 3000
 
 module.exports = (grunt) ->
   config =
-    
+    jade:
+      options:
+        pretty: true
+      layouts:
+        expand: true
+        cwd: 'layouts'
+        src: '**/*.jade'
+        dest: 'layouts'
+        ext: '.handlebars'
+      partials:
+        expand: true
+        cwd: 'partials'
+        src: '**/*.jade'
+        dest: 'partials'
+        ext: '.handlebars'
+
     yuidoc:
       name: 'Sample Project'
       description: 'A sample project for testing YUIDoc themes'
@@ -20,6 +35,11 @@ module.exports = (grunt) ->
     watch:
       options:
         livereload: true
+      jade:
+        files: [
+          'layouts/**/*.jade'
+          'partials/**/*.jade'
+        ]
       yuidoc:
         files: [
           '**/*.handlebars'
@@ -53,6 +73,8 @@ module.exports = (grunt) ->
 
   grunt.loadNpmTasks 'grunt-contrib-yuidoc'
   grunt.loadNpmTasks 'grunt-contrib-connect'
+  grunt.loadNpmTasks 'grunt-contrib-stylus'
+  grunt.loadNpmTasks 'grunt-contrib-jade'
   grunt.loadNpmTasks 'grunt-open'
   grunt.loadNpmTasks 'grunt-contrib-watch'
 

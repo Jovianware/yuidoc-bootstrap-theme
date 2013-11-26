@@ -5,11 +5,13 @@
       "file_exclude_patterns": [
         "*.png",
         "*.jpg",
-        "*.gif",
+        "*.gif"
       ],
       "folder_exclude_patterns": [
         "assets/vendor",
-        "assets/img"
+        "assets/img",
+        "node_modules",
+        "sample/doc"
       ]
     }
   ]
