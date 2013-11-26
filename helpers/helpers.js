@@ -13,7 +13,7 @@ module.exports = {
 
         return ret;
     },
-    search : function(classes, modules) {
+    search: function(classes, modules) {
         'use strict';
         var ret = '';
 
@@ -36,5 +36,15 @@ module.exports = {
         }
 
         return ret;
+    },
+    classes: function(root, name) {
+        return JSON.stringify(root);
+    },
+    ifCond: function(a, b, options) {
+        if (a === b) return options.fn(this);
+        return options.inverse(this);
+    },
+    printTheFuckingContext: function(context, options) {
+        return JSON.stringify(context);
     }
 };

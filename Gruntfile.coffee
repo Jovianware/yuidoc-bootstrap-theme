@@ -32,7 +32,6 @@ module.exports = (grunt) ->
           outdir: 'sample/doc'
           themedir: '.'
           helpers: ['helpers/helpers.js']
-          parseOnly: true
     
     watch:
       options:
@@ -42,6 +41,7 @@ module.exports = (grunt) ->
           'layouts/**/*.jade'
           'partials/**/*.jade'
         ]
+        tasks: ['jade']
       yuidoc:
         files: [
           '**/*.handlebars'

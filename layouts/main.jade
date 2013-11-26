@@ -1,35 +1,26 @@
 !!! 5
 html(lang='en')
-
-head
-  meta(charset='utf-8')
-    title
-      {{htmlTitle}}
-    link(rel='stylesheet', href='{{yuiGridsUrl}}')
+  head
+    meta(charset='utf-8')
+    title {{htmlTitle}}
     link(rel='stylesheet', href='{{projectAssets}}/vendor/prettify/prettify-min.css')
     link(rel='stylesheet', href='{{projectAssets}}/css/main.css')
     link(rel='shortcut icon', type='image/png', href='{{projectAssets}}/favicon.png')
-  
-  body.yui3-skin-sam
-    .navbar.navbar-default.navbar-fixed-top(role='navigation')
-      ul.nav.navbar-nav
-        li.divider-vertical
-        li
-          p.navbar-text
-            {{projectVersion}}
-      form.nav.navbar-nav.navbar-form.navbar-right
-        .form-group
-          input.form-control.search-query(type='text', placeholder='Search...', data-obj='[{{#search classes allModules}}{{/search}}]')
-    .container
-      .row
-        .span3
-          {{>sidebar}}
-        .span9
-          {{>options}}
-          .apidocs
-            #docs-main
-              .content
-                {{>layout_content}}
+    
+  body
+    header
+      h1.project-name {{projectName}}
+      h2.project-version {{projectVersion}}
+      p.project-description {{projectDescription}}
+
+    //- TODO: We should probably attach this data unobtrusively, somehow...
+    | <input type='search' placeholder='Search...' data-obj='[{{#search classes allModules}}{{/search}}]'>
+
+    {{>layout_content}}
+
+    {{>navigation}}
+    {{>options}}
+    
     script(src='{{projectAssets}}/vendor/jquery/jquery.min.js')
     script(src='{{projectAssets}}/vendor/prettify/prettify-min.js')
     script.
