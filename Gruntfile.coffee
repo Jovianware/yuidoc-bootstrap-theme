@@ -22,15 +22,17 @@ module.exports = (grunt) ->
         ext: '.handlebars'
 
     yuidoc:
-      name: 'Sample Project'
-      description: 'A sample project for testing YUIDoc themes'
-      version: '0.1.0'
-      url: 'http://example.com/'
-      options: 
-        paths: 'sample'
-        outdir: 'sample/doc'
-        themedir: '.'
-        helpers: ['helpers/helpers.js']
+      compile:
+        name: 'Sample Project'
+        description: 'A sample project for testing YUIDoc themes'
+        version: '0.1.0'
+        url: 'http://example.com/'
+        options: 
+          paths: ['sample/src']
+          outdir: 'sample/doc'
+          themedir: '.'
+          helpers: ['helpers/helpers.js']
+          parseOnly: true
     
     watch:
       options:
