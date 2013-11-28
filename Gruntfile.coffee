@@ -21,6 +21,14 @@ module.exports = (grunt) ->
         dest: 'partials'
         ext: '.handlebars'
 
+    stylus:
+      assets:
+        expand: true
+        cwd: 'assets'
+        src: '**/*.styl'
+        dest: 'assets'
+        ext: '.css'
+
     yuidoc:
       compile:
         name: 'Sample Project'
@@ -32,6 +40,13 @@ module.exports = (grunt) ->
           outdir: 'sample/doc'
           themedir: '.'
           helpers: ['helpers/helpers.js']
+    
+    copy:
+      assets:
+        expand: true
+        cwd: 'assets'
+        src: '**'
+        dest: 'sample/doc/assets'
     
     watch:
       options:
@@ -46,17 +61,23 @@ module.exports = (grunt) ->
         files: [
           '**/*.handlebars'
           'helpers/helpers.js'
-          'assets/**'
+          'sample/**'
         ]
         tasks: ['yuidoc']
+      stylus:
+        files: 'assets/**/*.styl'
+        tasks: ['stylus']
       html:
         files: '**/*.html'
-      images:
-        files: ['sample/doc/**/*.jpg', 'sample/doc/**/*.png', 'sample/doc/**/*.gif']
-      css:
-        files: 'sample/doc/**/*.css'
-      js:
-        files: 'sample/doc/**/*.js'
+      assets:
+        files: [
+          'assets/**/*.jpg'
+          'assets/**/*.png'
+          'assets/**/*.gif'
+          'assets/**/*.css'
+          'assets/**/*.js'
+        ]
+        tasks: ['copy:assets']
 
     connect:
       server:
@@ -73,12 +94,13 @@ module.exports = (grunt) ->
 
   grunt.initConfig config
 
-  grunt.loadNpmTasks 'grunt-contrib-yuidoc'
   grunt.loadNpmTasks 'grunt-contrib-connect'
   grunt.loadNpmTasks 'grunt-contrib-stylus'
   grunt.loadNpmTasks 'grunt-contrib-jade'
-  grunt.loadNpmTasks 'grunt-open'
+  grunt.loadNpmTasks 'grunt-contrib-copy'
+  grunt.loadNpmTasks 'grunt-contrib-yuidoc'
   grunt.loadNpmTasks 'grunt-contrib-watch'
+  grunt.loadNpmTasks 'grunt-open'
 
   grunt.registerTask 'default', ['yuidoc']
-  grunt.registerTask 'hack', ['yuidoc', 'connect:server', 'open:hack', 'watch']
+  grunt.registerTask 'hack', ['jade', 'stylus', 'yuidoc', 'connect:server', 'open:hack', 'watch']

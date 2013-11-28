@@ -6,46 +6,41 @@ nav
   menu(type='toolbar')
     command#show-flat-nav
     command#show-nested-nav
-    button(command='show-flat-nav') Flat
+    button.active(command='show-flat-nav') Flat
     button(command='show-nested-nav') Nested
   
   .content
-    #nav-flat.pane.active
+    .nav-flat.pane.active
       ul
         | {{#publicClasses classes}}
         li
           a(href='{{../projectRoot}}classes/{{name}}.html') {{displayName}}
         | {{/publicClasses}}
 
-    #nav-nested.pane
-      ul
+    .nav-nested.pane
+      ul.modules
         | {{#modules}}
 
         li
           a(href='{{../projectRoot}}modules/{{name}}.html') {{displayName}}
-
           ul.classes
             | {{#each ../classes}}
-            | {{#ifCond module ../displayName}}
-            li.class-item
-              a(href='{{../../projectRoot}}classes/{{displayName}}.html') {{displayName}}
-            | {{else}}
-            //- HURRR
-            | {{/ifCond}}
+            | {{#equals module ../displayName}}
+            li
+              a(href='{{../../projectRoot}}{{displayName}}.html') {{displayName}}
+            | {{/equals}}
             | {{/each}}
-
           ul.submodules
             | {{#each submodules}}
-            li.submodule-item
+            li
               a(href='{{../../projectRoot}}modules/{{displayName}}.html') {{displayName}}
-
               ul.classes
                 | {{#each ../../classes}}
-                | {{#ifCond module ../displayName}}
-                li.class-item
-                  a(href='{{../../projectRoot}}classes/{{displayName}}.html') {{displayName}}
+                | {{#equals module ../displayName}}
+                li
+                  a(href='{{../../../projectRoot}}{{displayName}}.html') {{displayName}}
                 | {{else}}
-                | {{/ifCond}}
+                | {{/equals}}
                 | {{/each}}
             | {{/each}}
 

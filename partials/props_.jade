@@ -1,0 +1,57 @@
+section.property(id="property_{{name}}", class="item{{#if access}} {{access}}{{/if}}{{#if deprecated}} deprecated{{/if}}{{#if extended_from}} inherited{{/if}}")
+  header
+    h1
+      span.name {{name}}
+    
+    span.type {{#crossLink type}}{{/crossLink}}
+
+    .flags
+      {{#if deprecated}}
+      span(class="flag deprecated", title="{{#if deprecationMessage}}{{deprecationMessage}}{{/if}}") deprecated
+      {{/if}}
+
+      {{#if access}}
+      span(class="flag {{access}}") {{access}}
+      {{/if}}
+
+      {{#if final}}
+      span(class="flag final") final
+      {{/if}}
+
+      {{#if static}}
+      span(class="flag static") static
+      {{/if}}
+
+  .description
+    p {{{description}}}
+
+  {{#if default}}
+  p.default Default: {{default}}
+  {{/if}}
+
+  {{#if subprops}}
+  section.subprops
+    header
+      h1 Sub-properties:
+
+    ul
+      {{#subprops}}
+      li
+        code(class="name {{#if optional}}optional{{/if}}").
+          {{name}}{{#if optdefault}}=<span class="default-value">{{optdefault}}</span>{{/if}}
+        span.type {{#crossLink type}}{{/crossLink}}
+        {{#if optional}}
+        span.flag.optional(title="This parameter is optional") optional
+        {{/if}}
+        .description
+          p {{{description}}}
+      {{/subprops}}
+  {{/if}}
+
+  {{#example}}
+  section.examples
+    header
+      h1 Examples:
+    .content
+      {{{.}}}
+  {{/example}}

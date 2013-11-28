@@ -1,0 +1,136 @@
+section.attribute(id="attr_{{name}}", class="item{{#if access}} {{access}}{{/if}}{{#if deprecated}} deprecated{{/if}}{{#if extended_from}} inherited{{/if}}")
+  header
+    a(name="config_{{name}}") {{! For backwards compatibility }}
+    h1
+      span.name {{name}}
+      span.type {{#crossLink type}}{{/crossLink}}
+
+    {{#if deprecated}}
+    span(class="flag deprecated", title="{{#if deprecationMessage}}{{deprecationMessage}}{{/if}}") deprecated
+    {{/if}}
+
+    {{#if access}}
+    span(class="flag {{access}}") {{access}}
+    {{/if}}
+
+    {{#if final}}
+    span(class="flag final") final
+    {{/if}}
+
+    {{#if static}}
+    span(class="flag static") static
+    {{/if}}
+
+    {{#if optional}}
+    span(class="flag optional") optional
+    {{/if}}
+
+    {{#if required}}
+    span(class="flag required") required
+    {{/if}}
+
+    {{#if readonly}}
+    span(class="flag readonly") readonly
+    {{/if}}
+
+  .description
+    p {{{attrDescription}}}
+
+  {{#if default}}
+  p.default Default: {{default}}
+  {{/if}}
+
+  {{#if emit}}
+  .emits
+    h4 Fires event <span class='name'>{{name}}Change</span>
+
+    p.
+      Fires when the value for the configuration attribute `{{{name}}}` is
+      changed. You can listen for the event using the `on` method if you
+      wish to be notified before the attribute's value has changed, or
+      using the `after` method if you wish to be notified after the
+      attribute's value has changed.
+
+    section.params
+      h4 Parameters:
+      | e
+      span.type {{#crossLink "EventFacade"}}{{/crossLink}}
+
+      .description.
+        An Event Facade object with the following
+        attribute-specific properties added:
+
+      ul
+        li
+          span.name prevVal
+          span.type Any
+          p.description The value of the attribute, prior to it being set.
+        
+        li
+          span.name newVal
+          span.type Any
+          p.description The value the attribute is to be set to.
+        
+        li
+          span.name attrName
+          span.type {{#crossLink "String"}}{{/crossLink}}
+          p.description The name of the attribute being set.
+        
+        li
+          span.name subAttrName
+          span.type {{#crossLink "String"}}{{/crossLink}}
+          p.description If setting a property within the attribute's value, the name of the sub-attribute property being set.
+  {{/if}}
+
+  {{#example}}
+  .example
+    h4 Example:
+    .content
+      {{{.}}}
+  {{/example}}
+
+  section.meta
+    {{#if overwritten_from}}
+    p
+      |Inherited from
+      a(href="{{crossLinkRaw overwritten_from/class}}#attr_{{overwritten_from/name}}").
+        {{overwritten_from/class}}
+
+      {{#if foundAt}}
+      | but overwritten in 
+      a(href="{{foundAt}}").
+        `{{{file}}}:{{{line}}}`
+      {{/if}}
+
+    {{else}}
+    {{#if extended_from}}
+    p
+      |Inherited from
+      a(href="{{crossLinkRaw extended_from}}#attr_{{name}}").
+       {{extended_from}}
+
+    {{else}}
+
+    {{#providedBy}}
+    p Provided by the <a href="../modules/{{.}}.html">{{.}}</a> module.
+    {{/providedBy}}
+
+    {{#if foundAt}}
+    p Defined in
+      a(href="{{foundAt}}").
+        `{{{file}}}:{{{line}}}`
+    {{/if}}
+
+    {{/if}}
+    {{/if}}
+
+    {{#if deprecationMessage}}
+    aside.deprecated.
+      Deprecated: {{deprecationMessage}}
+    {{/if}}
+
+    {{#if since}}
+    aside.since.
+      Available since {{since}}
+    {{/if}}
+

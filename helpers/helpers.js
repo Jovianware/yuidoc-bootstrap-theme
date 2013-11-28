@@ -40,7 +40,7 @@ module.exports = {
     classes: function(root, name) {
         return JSON.stringify(root);
     },
-    ifCond: function(a, b, options) {
+    equals: function(a, b, options) {
         if (a === b) return options.fn(this);
         return options.inverse(this);
     },

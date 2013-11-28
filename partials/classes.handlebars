@@ -1,8 +1,7 @@
-<div class="page-header">
-    <h1>{{name}} <small>Class</small></h1>
-</div>
-
-<div class="well well-small">
+<article class="class">
+    <header>
+        <h1>{{name}} Class</h1>
+    </header>
     {{#if uses}}
         <div class="uses">
             Uses
@@ -178,7 +177,7 @@
                 <h2 class="off-left">Properties</h2>
 
                 {{#properties}}
-                    {{>props}}
+                    {{>props_}}
                 {{/properties}}
             </div>
         {{/if}}
@@ -203,4 +202,4 @@
             </div>
         {{/if}}
     </div>
-</div>
+</article>
